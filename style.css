@@ -1,20 +1,37 @@
-/* Coca-Cola Brand Colors */
-:root {
-    --coke-red: #F40009;
-    --coke-black: #1E1E1E;
-    --coke-white: #FFFFFF;
-}
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow-x: hidden;
 }
 
-/* Helper Class for the Brand Red */
-.bg-coke-red {
-    background-color: var(--coke-red);
+.navbar {
+    transition: background-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+    background-color: transparent;
 }
 
-.text-coke-red {
-    color: var(--coke-red);
+.navbar-scrolled {
+    background-color: #ffffff !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+.nav-link {
+    font-size: 1rem;
+    color: #000 !important;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.hero-gradient {
+    background: linear-gradient(270deg, #F40009, #ff6b6b, #4ecdc4, #45b7d1);
+    background-size: 800% 800%;
+    animation: gradientShift 10s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
