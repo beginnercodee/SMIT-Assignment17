@@ -28,6 +28,7 @@ body {
     background: linear-gradient(270deg, #F40009, #ff6b6b, #4ecdc4, #45b7d1);
     background-size: 800% 800%;
     animation: gradientShift 10s ease infinite;
+    padding-top: 120px;
 }
 
 @keyframes gradientShift {
@@ -77,4 +78,8 @@ section.hero-gradient {
 
 .carousel-indicators {
     margin-bottom: 0;
+}
+
+.object-fit-cover {
+    object-fit: cover;
 }
