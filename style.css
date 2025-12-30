@@ -1,0 +1,20 @@
+/* Coca-Cola Brand Colors */
+:root {
+    --coke-red: #F40009;
+    --coke-black: #1E1E1E;
+    --coke-white: #FFFFFF;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Helper Class for the Brand Red */
+.bg-coke-red {
+    background-color: var(--coke-red);
+}
+
+.text-coke-red {
+    color: var(--coke-red);
+}
