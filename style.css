@@ -111,21 +111,51 @@ section.hero-gradient {
   width: 100%;
 }
 
+
+.carousel-inner .row {
+    flex-wrap: nowrap;
+}
+
+.carousel-item .col-custom {
+    flex: 0 0 85%;
+    max-width: 85%;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+@media (min-width: 768px) {
+    .carousel-item .col-custom {
+        flex: 0 0 45%;
+        max-width: 45%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .carousel-item .col-custom {
+        flex: 0 0 28%;
+        max-width: 28%;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+}
+
+.card-img-top {
+    width: 100%;
+    object-fit: cover;
+    height: 300px; 
+    transition: height 0.3s ease;
+}
+
+@media (min-width: 992px) {
+    .card-img-top {
+        height: 500px;
+    }
+}
+
 .card-body {
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-}
-
-.carousel-inner .row {
-  flex-wrap: nowrap;
-}
-
-.carousel-item .col-custom {
-  flex: 0 0 28%;
-  max-width: 28%;
-  padding-right: 15px;
-  padding-left: 15px;
 }
 
 .btn-outline-black-custom {
@@ -195,35 +225,31 @@ section.hero-gradient {
   color: white;
 }
 
-/* --- Footer Styling --- */
 .footer-custom {
     background-color: #000000;
     color: #ffffff;
     position: relative;
-    overflow: hidden; /* Ensures the glow doesn't spill out */
-    font-family: 'Poppins', sans-serif; /* Or your main font */
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
 }
 
-/* The Glow Effect in Bottom Right */
 .footer-glow {
     position: absolute;
     bottom: -150px;
     right: -100px;
     width: 800px;
     height: 600px;
-    /* This creates the reddish/orange gradient fade */
     background: radial-gradient(circle, rgba(200, 50, 0, 0.4) 0%, rgba(0, 0, 0, 0) 70%);
     filter: blur(60px);
     z-index: 1;
     pointer-events: none; /* Allows clicking through the glow */
 }
 
-/* Links */
 .footer-link {
     color: #ffffff;
     text-decoration: none;
     display: block;
-    margin-bottom: 20px; /* Spacing between links */
+    margin-bottom: 20px;
     font-size: 0.95rem;
     transition: opacity 0.2s;
 }
@@ -234,7 +260,6 @@ section.hero-gradient {
     text-decoration: none;
 }
 
-/* Social Media Circles */
 .social-btn {
     width: 40px;
     height: 40px;
@@ -254,7 +279,6 @@ section.hero-gradient {
     transform: translateY(-3px);
 }
 
-/* Typography tweaks */
 h6 {
     letter-spacing: 0.5px;
     font-size: 0.9rem;
