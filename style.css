@@ -194,3 +194,68 @@ section.hero-gradient {
   background: #000;
   color: white;
 }
+
+/* --- Footer Styling --- */
+.footer-custom {
+    background-color: #000000;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden; /* Ensures the glow doesn't spill out */
+    font-family: 'Poppins', sans-serif; /* Or your main font */
+}
+
+/* The Glow Effect in Bottom Right */
+.footer-glow {
+    position: absolute;
+    bottom: -150px;
+    right: -100px;
+    width: 800px;
+    height: 600px;
+    /* This creates the reddish/orange gradient fade */
+    background: radial-gradient(circle, rgba(200, 50, 0, 0.4) 0%, rgba(0, 0, 0, 0) 70%);
+    filter: blur(60px);
+    z-index: 1;
+    pointer-events: none; /* Allows clicking through the glow */
+}
+
+/* Links */
+.footer-link {
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 20px; /* Spacing between links */
+    font-size: 0.95rem;
+    transition: opacity 0.2s;
+}
+
+.footer-link:hover {
+    color: #ffffff;
+    opacity: 0.7;
+    text-decoration: none;
+}
+
+/* Social Media Circles */
+.social-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+    background-color: #fff;
+    color: #000;
+    transform: translateY(-3px);
+}
+
+/* Typography tweaks */
+h6 {
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+}
