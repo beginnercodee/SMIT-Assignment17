@@ -268,12 +268,57 @@
         </div>
     </section>
 
-    <section class="py-5 bg-white">
-        <div class="container py-5">
-            <h2 class="mb-4">Scroll down to see the navbar change!</h2>
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua.</p>
-            <p class="text-muted" style="height: 800px;">(More content space...)</p>
+    <section class="career-section">
+        <div class="career-container">
+
+            <h1 class="unleash-text text-center fw-bold">
+                Unleash<br>Your<br>Potential
+            </h1>
+
+            <div class="card career-card card-1 border-0 shadow-lg overflow-hidden">
+                <div class="row g-0 h-100">
+                    <div class="col-lg-6">
+                        <img src="https://www.coca-colacompany.com/content/dam/company/us/en/homepage/homepage-images/images/groupcoca.jpg/width1960.jpg"
+                            alt="Team" class="img-fluid h-100 w-100 object-fit-cover">
+                    </div>
+                    <div class="col-lg-6 d-flex align-items-center bg-white">
+                        <div class="card-body p-5">
+                            <h2 class="display-6 fw-bold mb-4">Refresh Your Career</h2>
+                            <p class="text-muted mb-5" style="line-height: 1.8;">
+                                We're the change-making company. And change starts with you.
+                                Transformative training. Unbottled opportunities. It's time to twist the cap off your talent and unleash it in our world.
+                            </p>
+                            <a href="#" class="btn btn-pill-custom">Explore more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-5" style="background: linear-gradient(180deg, #f1f8e9 0%, #ffffff 100%);">
+        <div class="container d-flex justify-content-center">
+
+            <div class="card border-0 shadow-lg overflow-hidden"
+                style="max-width: 1100px; width: 90%; border-radius: 30px;">
+                <div class="row g-0">
+                    <div class="col-lg-6 d-flex align-items-center bg-white">
+                        <div class="card-body p-5">
+                            <h2 class="display-6 fw-bold mb-4">Start the Next Chapter</h2>
+                            <p class="text-muted mb-5" style="line-height: 1.8;">
+                                For more than 135 years, we've been flowing with ideas. Find your place in our story and bring your own, original flavor to our future.
+                            </p>
+                            <a href="#" class="btn btn-pill-custom">Join the Team</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="https://www.coca-colacompany.com/content/dam/company/us/en/homepage/homepage-images/images/groupgirls.jpg/width1960.jpg"
+                            alt="Growth" class="img-fluid h-100 w-100 object-fit-cover" style="min-height: 400px;">
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -410,6 +455,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <script>
         const navbar = document.getElementById('mainNavbar');
 
@@ -438,6 +487,34 @@
                 next = next.nextElementSibling;
             }
         });
+
+        // Register the plugin
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Create the animation timeline
+        let tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".career-section",
+                start: "top top", // When top of section hits top of viewport
+                end: "+=1500",    // The amount of scrolling distance to complete the animation
+                scrub: 1,         // Smooth scrubbing (1 second delay)
+                pin: true         // Pin the section in place while scrolling
+            }
+        });
+
+        // Animation Step 1: Fade out the text and scale it down slightly
+        tl.to(".unleash-text", {
+            opacity: 0,
+            scale: 0.8,
+            duration: 1
+        });
+
+        // Animation Step 2: Fade in the card and move it up to center
+        tl.to(".career-card", {
+            opacity: 1,
+            y: 0,
+            duration: 1
+        }, "-=0.5"); // Start this 0.5s before the text finishes fading out (overlap)
     </script>
 
 </body>
