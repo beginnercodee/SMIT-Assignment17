@@ -382,6 +382,11 @@
         </div>
     </section>
 
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top-btn" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
     <footer class="footer-custom pt-5 pb-3">
         <div class="footer-glow"></div>
 
@@ -515,6 +520,24 @@
             y: 0,
             duration: 1
         }, "-=0.5"); // Start this 0.5s before the text finishes fading out (overlap)
+
+        // Back to top button functionality
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     </script>
 
 </body>
