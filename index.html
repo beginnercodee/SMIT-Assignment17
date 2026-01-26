@@ -12,6 +12,28 @@
 
 <body>
 
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loader-container">
+            <div class="coca-cola-loader">
+                <div class="bottle-shape">
+                    <div class="bottle-top"></div>
+                    <div class="bottle-body">
+                        <div class="liquid"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="loader-text">
+                <h2 class="loader-title">The Coca-Cola Company</h2>
+                <div class="loader-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <nav class="navbar navbar-expand-lg fixed-top py-3 transition-all" id="mainNavbar">
         <div class="container d-flex justify-content-between justify-content-lg-center gap-lg-5 px-4 px-lg-5">
 
@@ -465,6 +487,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <script>
+        // Loading Screen Handler
+        window.addEventListener('load', () => {
+            const loadingScreen = document.getElementById('loadingScreen');
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }, 500);
+            }, 1000); // Minimum display time for smooth experience
+        });
+
+        // Prevent scrolling during loading
+        document.body.style.overflow = 'hidden';
+
         const navbar = document.getElementById('mainNavbar');
 
         window.addEventListener('scroll', () => {
@@ -537,6 +574,55 @@
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+
+        // Image loading with skeleton loaders
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            // Add lazy loading if supported
+            if ('loading' in HTMLImageElement.prototype) {
+                img.loading = 'lazy';
+            }
+            
+            // Show skeleton while loading
+            if (!img.complete) {
+                const parent = img.parentElement;
+                if (parent) {
+                    parent.style.position = 'relative';
+                    
+                    const skeleton = document.createElement('div');
+                    skeleton.className = 'skeleton-loader';
+                    skeleton.style.position = 'absolute';
+                    skeleton.style.top = '0';
+                    skeleton.style.left = '0';
+                    skeleton.style.width = '100%';
+                    skeleton.style.height = img.offsetHeight || '300px';
+                    skeleton.style.zIndex = '1';
+                    
+                    img.style.opacity = '0';
+                    img.style.transition = 'opacity 0.5s ease';
+                    
+                    parent.insertBefore(skeleton, img);
+                    
+                    img.addEventListener('load', () => {
+                        img.style.opacity = '1';
+                        setTimeout(() => {
+                            if (skeleton.parentElement) {
+                                skeleton.remove();
+                            }
+                        }, 300);
+                    });
+                    
+                    img.addEventListener('error', () => {
+                        if (skeleton.parentElement) {
+                            skeleton.remove();
+                        }
+                        img.style.opacity = '1';
+                    });
+                }
+            } else {
+                img.style.opacity = '1';
+            }
         });
     </script>
 
