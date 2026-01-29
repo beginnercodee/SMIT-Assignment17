@@ -122,7 +122,7 @@
 
         <div class="container py-4 mt-4">
 
-            <h2 class="display-5 fw-bold mb-5 ps-2">Our Purpose & Company Vision</h2>
+            <h2 class="display-5 fw-bold mb-5 ps-2 scroll-animate-heading">Our Purpose & Company Vision</h2>
 
             <div class="row g-4 g-lg-5">
 
@@ -176,7 +176,7 @@
     <section class="news-section py-5">
         <div class="container-fluid px-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="display-5 fw-bold text-black mb-0">The Freshest News</h2>
+                <h2 class="display-5 fw-bold text-black mb-0 scroll-animate-heading">The Freshest News</h2>
 
                 <div class="d-flex gap-2">
                     <button class="btn btn-outline-black-custom" type="button" data-bs-target="#newsCarouselMulti"
@@ -319,10 +319,10 @@
         </div>
     </section>
 
-    <section class="py-5" style="background: linear-gradient(180deg, #f1f8e9 0%, #ffffff 100%);">
+    <section id="nextChapterSection" class="py-5 next-chapter-section" style="background: linear-gradient(180deg, #f1f8e9 0%, #ffffff 100%);">
         <div class="container d-flex justify-content-center">
 
-            <div class="card border-0 shadow-lg overflow-hidden"
+            <div class="card border-0 shadow-lg overflow-hidden next-chapter-card"
                 style="max-width: 1100px; width: 90%; border-radius: 30px;">
                 <div class="row g-0">
                     <div class="col-lg-6 d-flex align-items-center bg-white">
@@ -348,7 +348,7 @@
         <div class="container py-4">
 
             <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold text-black">Say "Hi" to the Team</h2>
+                <h2 class="display-5 fw-bold text-black scroll-animate-heading">Say "Hi" to the Team</h2>
             </div>
 
             <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4 align-items-center justify-content-center mb-5">
@@ -532,6 +532,103 @@
 
         // Register the plugin
         gsap.registerPlugin(ScrollTrigger);
+
+        // Scroll-triggered animations (skip if user prefers reduced motion)
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!prefersReducedMotion) {
+
+            // Section headings: fade in + slide up
+            gsap.utils.toArray('.scroll-animate-heading').forEach((heading) => {
+                gsap.from(heading, {
+                    opacity: 0,
+                    y: 40,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: heading,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+            });
+
+            // Purpose cards: fade in + slide up with stagger
+            gsap.from('.purpose-card', {
+                opacity: 0,
+                y: 60,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '.hero-gradient .container.py-4.mt-4 .row',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
+            });
+
+            // News section: animate header row then "See All News" CTA
+            gsap.from('.news-section .d-flex.justify-content-between.mb-4', {
+                opacity: 0,
+                y: 40,
+                duration: 0.7,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '.news-section',
+                    start: 'top 78%',
+                    toggleActions: 'play none none none'
+                }
+            });
+            gsap.from('.news-section .btn-pill-custom', {
+                opacity: 0,
+                y: 30,
+                duration: 0.7,
+                delay: 0.2,
+                scrollTrigger: {
+                    trigger: '.news-section',
+                    start: 'top 75%',
+                    toggleActions: 'play none none none'
+                }
+            });
+
+            // "Start the Next Chapter" card: fade in + slide up
+            gsap.from('.next-chapter-card', {
+                opacity: 0,
+                y: 70,
+                duration: 1,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '#nextChapterSection',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
+            });
+
+            // Team section: brand logos stagger in
+            gsap.from('.team-section .row .col', {
+                opacity: 0,
+                y: 35,
+                duration: 0.6,
+                stagger: 0.08,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '.team-section .row',
+                    start: 'top 82%',
+                    toggleActions: 'play none none none'
+                }
+            });
+
+            // Team "Meet the rest" button
+            gsap.from('.team-section .btn-pill-custom', {
+                opacity: 0,
+                y: 25,
+                duration: 0.6,
+                scrollTrigger: {
+                    trigger: '.team-section .text-center:last-of-type',
+                    start: 'top 90%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        }
 
         // Create the animation timeline
         let tl = gsap.timeline({
