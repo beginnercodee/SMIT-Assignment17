@@ -3,6 +3,24 @@ body {
   overflow-x: hidden;
 }
 
+/* Scroll Progress Bar */
+.scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 0%;
+    background: linear-gradient(90deg, #f40009, #ff6b6b);
+    z-index: 9998;
+    transition: width 0.1s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-progress-bar {
+        transition: none;
+    }
+}
+
 /* Loading Screen */
 .loading-screen {
     position: fixed;

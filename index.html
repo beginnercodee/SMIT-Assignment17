@@ -12,6 +12,9 @@
 
 <body>
 
+    <!-- Scroll Progress Bar -->
+    <div id="scrollProgressBar" class="scroll-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Page scroll progress"></div>
+
     <!-- Loading Screen -->
     <div id="loadingScreen" class="loading-screen">
         <div class="loader-container">
@@ -501,6 +504,19 @@
 
         // Prevent scrolling during loading
         document.body.style.overflow = 'hidden';
+
+        // Scroll progress bar
+        const scrollProgressBar = document.getElementById('scrollProgressBar');
+        function updateScrollProgress() {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+            scrollProgressBar.style.width = progress + '%';
+            scrollProgressBar.setAttribute('aria-valuenow', Math.round(progress));
+        }
+        window.addEventListener('scroll', updateScrollProgress);
+        window.addEventListener('resize', updateScrollProgress);
+        updateScrollProgress();
 
         const navbar = document.getElementById('mainNavbar');
 
