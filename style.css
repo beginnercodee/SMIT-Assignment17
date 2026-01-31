@@ -1,7 +1,53 @@
+:root{
+  --bg:#fff;
+  --text:#111;
+  --surface:#ffffff;
+  --muted:#6b6b6b;
+  --accent:#f40009;
+  --transition:200ms;
+}
+[data-theme="dark"]{
+  --bg:#0b0b0f;
+  --text:#e6e6e6;
+  --surface:#0b0b0f;
+  --muted:#9a9a9a;
+  --accent:#ff6b6b;
+}
+body{background:var(--bg);color:var(--text)}
+/* ensure correct color-scheme for form controls and UA widgets */
+:root, [data-theme="dark"] { color-scheme: light dark; }
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   overflow-x: hidden;
+  transition: background var(--transition) ease, color var(--transition) ease;
 }
+
+/* Theme toggle button styles */
+.theme-toggle{
+  --size:40px;
+  display:inline-grid;
+  place-items:center;
+  width:var(--size);
+  height:var(--size);
+  background:transparent;
+  border:1px solid rgba(0,0,0,0.08);
+  border-radius:999px;
+  color:inherit;
+  cursor:pointer;
+  position:relative;
+  transition:transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+.theme-toggle:focus{outline:3px solid rgba(0,0,0,0.08);outline-offset:3px}
+.theme-toggle .fa-moon{display:none;transform:rotate(-20deg)}
+.theme-toggle.is-dark .fa-sun{display:none}
+.theme-toggle.is-dark .fa-moon{display:inline-block;transform:rotate(0deg)}
+.theme-toggle .fa-sun,.theme-toggle .fa-moon{transition:opacity 180ms ease,transform 180ms ease;font-size:1rem;line-height:1;vertical-align:middle}
+.theme-toggle:hover{transform:translateY(-2px)}
+
+@media (prefers-reduced-motion: reduce){
+  .theme-toggle, :root { transition: none; }
+}
+
 
 /* Scroll Progress Bar */
 .scroll-progress-bar {
