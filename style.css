@@ -48,6 +48,23 @@ body {
   .theme-toggle, :root { transition: none; }
 }
 
+/* Theme switch fade overlay — subtle polish when user switches theme */
+.theme-transition-overlay{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:99999;
+  opacity:0;
+  transition:opacity 260ms cubic-bezier(.2,.9,.2,1);
+  will-change:opacity,background-color;
+}
+.theme-transition-overlay.visible{
+  opacity:1;
+}
+@media (prefers-reduced-motion: reduce){
+  .theme-transition-overlay{ transition: none; }
+}
+
 
 /* Scroll Progress Bar */
 .scroll-progress-bar {
